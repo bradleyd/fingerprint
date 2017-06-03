@@ -1,3 +1,3 @@
 use Mix.Config
 
-config :fingerprint, os_relase: "/etc/os-release"
+config :fingerprint, os_release: "/etc/os-release"
