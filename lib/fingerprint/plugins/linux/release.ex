@@ -4,7 +4,7 @@ defmodule Fingerprint.Plugins.Linux.Release do
     Returns information from /etc/os-release file
   """
   defmodule Attributes do
-    defstruct name: :nil, version: :nil, id: :nil, pretty_name: :nil
+    defstruct name: :nil, hostname: :nil, kernel_version: :nil, version: :nil, id: :nil, pretty_name: :nil, architecture: :nil
   end
 
   @release_file Application.get_env(:fingerprint, :os_release)
@@ -14,30 +14,23 @@ defmodule Fingerprint.Plugins.Linux.Release do
 
   ## Examples
 
-      iex> Fingerprint.OS.Release.parse
-      %{"bug_report_url" => "https://bugs.launchpad.net/ubuntu/",
-      "home_url" => "https://www.ubuntu.com/", "id" => "ubuntu",
-      "id_like" => "debian", "name" => "Ubuntu",
-      "pretty_name" => "Ubuntu 17.04",
-      "privacy_policy_url" => "https://www.ubuntu.com/legal/terms-and-policies/privacy-policy",
-      "support_url" => "https://help.ubuntu.com/",
-      "ubuntu_codename" => "zesty", "version" => "17.04 (Zesty Zapus)",
-      "version_codename" => "zesty", "version_id" => "17.04"}
-
-
+      iex> Fingerprint.OS.Release.release
+      %Fingerprint.Plugins.Linux.Release.Attributes{architecture: "x86_64",
+      hostname: "bradleyd-900X4C", id: "ubuntu", kernel_version: "4.10.0-20-generic",
+      name: "Ubuntu", pretty_name: "Ubuntu 17.04", version: "17.04 (Zesty Zapus)"}
   """
   def release do
     stream = File.stream!(@release_file)
     data   = parse_release_file(stream)
-    build_release(data, %{})
+    build_release(data, %Attributes{architecture: architecture(), hostname: hostname(), kernel_version: kernel_version()})
   end
 
-  # TODO to_atom may be rude to other systems
-  defp build_release([], acc), do: struct(%Attributes{}, acc)
+  # TODO to_atom may be rude
+  defp build_release([], acc), do: acc
   defp build_release([h|t], acc) do
-    key   = String.downcase(List.first(h))
+    key   = String.downcase(List.first(h)) |> String.to_atom
     value = List.last(h)
-    acc   = Map.put(acc, String.to_atom(key), value)
+    acc   = struct(acc, %{key => value})
     build_release(t, acc)
   end
 
@@ -57,4 +50,17 @@ defmodule Fingerprint.Plugins.Linux.Release do
   defp split_key_and_values(str) do
     String.split(str, "=")
   end
+  defp architecture() do
+    {data, 0} = System.cmd("uname", ["-m"])
+    String.trim(data)
+  end
+  defp kernel_version() do
+    {data, 0} = System.cmd("uname", ["-r"])
+    String.trim(data)
+  end
+  defp hostname() do
+    {:ok, hostname} = :inet.gethostname
+    to_string(hostname) |> String.trim()
+  end
+
 end
