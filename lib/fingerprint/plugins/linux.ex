@@ -6,6 +6,7 @@ defmodule Fingerprint.Plugins.Linux do
       import  Fingerprint.Plugins.Linux.Network
       import  Fingerprint.Plugins.Linux.BlockDevices
       import  Fingerprint.Plugins.Linux.Release
+      import unquote(__MODULE__)
     end
   end
 end

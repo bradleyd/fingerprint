@@ -3,6 +3,8 @@ defmodule Fingerprint.Plugins.Linux.BlockDevices do
   Linux Block Devices
   """
 
+  @behaviour Fingerprint.BlockDevices
+
   defmodule Attributes do
     defstruct device: :nil, size: :nil, removable: :nil, model: :nil, rev: :nil, state: :nil, timeout: :nil, vendor: :nil, queue_depth: :nil,
     rotational: :nil, physical_block_size: :nil, logical_block_size: :nil

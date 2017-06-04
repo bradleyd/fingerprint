@@ -2,6 +2,7 @@ defmodule Fingerprint.Plugins.Linux.Network do
   @moduledoc """
     Linux network
   """
+  @behaviour Fingerprint.Network
 
   defmodule Attributes do
     defstruct address: :nil, device: :nil, flags: [], netmask: :nil
