@@ -2,10 +2,25 @@
 
 Fingerprint provides operating system utilities for profiling your host.
 
+Fingerprint will do it's best to determine the os type and use the appropriate plugin to give you information
+
+Currently information provieded consists of
+
+* release (platform info)
+
+* network
+
+* block devices
+
+* CPU
+
+* Memory (in progess)
+
+
 ### Release (Platform)
 
 ```elixir
-iex(1) Fingerprint.Plugins.Linux.Release.release()
+iex(1) Fingerprint.Release.release()
 %Fingerprint.Plugins.Linux.Release.Attributes{architecture: "x86_64",
  hostname: "bradleyd-900X4C", id: "ubuntu", kernel_version: "4.10.0-20-generic",
  name: "Ubuntu", pretty_name: "Ubuntu 17.04", version: "17.04 (Zesty Zapus)"}
@@ -14,7 +29,7 @@ iex(1) Fingerprint.Plugins.Linux.Release.release()
 ### Network
 
 ```elixir
-iex(1)> Fingerprint.Plugins.Linux.Network.addresses()
+iex(1)> Fingerprint.Network.addresses()
 [%Fingerprint.Plugins.Linux.Network.Attributes{address: "FE80::44E5:94FF:FE4D:91C8",
   device: "vethf25e7d7", flags: [:up, :broadcast, :running, :multicast],
   netmask: "FFFF:FFFF:FFFF:FFFF::"},
@@ -44,7 +59,7 @@ iex(1)> Fingerprint.Plugins.Linux.Network.addresses()
 ### Block Devices
 
 ```elixir
-iex(1)> Fingerprint.Plugins.Linux.BlockDevices.all()
+iex(1)> Fingerprint.BlockDevices.all()
 [%Fingerprint.Plugins.Linux.BlockDevices.Attributes{device: "dm-0",
   logical_block_size: "512", model: nil, physical_block_size: "512",
   queue_depth: nil, removable: "0", rev: nil, rotational: "0",
@@ -96,6 +111,14 @@ iex(1)> Fingerprint.Plugins.Linux.BlockDevices.all()
 
 ### Memory
 
+
+### TODO
+
+* more tests
+
+* add more system information
+
+* add more platforms other than linux
 
 ## Installation
 
