@@ -1,4 +1,4 @@
-defmodule Fingerprint.OS.Release do
+defmodule Fingerprint.Plugins.Linux.Release do
 
   @moduledoc """
     Returns information from /etc/os-release file
@@ -26,7 +26,7 @@ defmodule Fingerprint.OS.Release do
 
 
   """
-  def parse do
+  def release do
     stream = File.stream!(@release_file)
     data   = parse_release_file(stream)
     build_release(data, %{})
