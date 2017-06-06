@@ -15,8 +15,10 @@ defmodule Fingerprint.Plugins.Linux.BlockDevices do
 
   ## Examples
 
-  iex> Fingerprint.Plugins.Linux.BlockDevices.all
-  [%Fingerprint.Plugins.Linux.BlockDevices.Attributes{size: 10000, removable: 0}
+
+      iex> Fingerprint.Plugins.Linux.BlockDevices.all
+      [%Fingerprint.Plugins.Linux.BlockDevices.Attributes{size: 10000, removable: 0}
+
 
   """
 

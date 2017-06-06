@@ -14,11 +14,11 @@ defmodule Fingerprint.Plugins.Linux.Cpu do
 
   ## Examples
 
-  iex> Fingerprint.Plugins.Linux.Cpu.count
-  %Fingerprint.Plugins.Linux.Cpu.Attributes{count: 4}
+      iex> Fingerprint.Plugins.Linux.Cpu.count
+      %Fingerprint.Plugins.Linux.Cpu.Attributes{count: 4}
+
 
   """
-
   def count do
     count = :os.cmd('lscpu -p=cpu | grep -v ^# | wc -l') |> to_string |> String.trim |> String.to_integer
     %{ %Attributes{} | count: count }
