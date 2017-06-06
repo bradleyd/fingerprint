@@ -111,10 +111,33 @@ iex(1)> Fingerprint.BlockDevices.all()
 
 ### Memory
 
+```elixir
+iex(2)> Fingerprint.Memory.all
+%{"Active" => 4467888, "Hugepagesize" => 2048, "VmallocTotal" => 34359738367,
+  "ShmemPmdMapped" => 0, "Mlocked" => 4876, "SwapCached" => 380, "Dirty" => 316,
+  "SwapFree" => 8065520, "Inactive" => 2695824, "CmaFree" => 0,
+  "MemTotal" => 7869508, "Unevictable" => 4876, "Slab" => 282932,
+  "Active(file)" => 1136516, "HardwareCorrupted" => 0, "Writeback" => 0,
+  "AnonHugePages" => 1875968, "VmallocUsed" => 0, "Shmem" => 591500,
+  "HugePages_Rsvd" => 0, "Buffers" => 722516, "Mapped" => 796444,
+  "DirectMap4k" => 303028, "CommitLimit" => 12020252, "HugePages_Total" => 0,
+  "WritebackTmp" => 0, "HugePages_Surp" => 0, "Inactive(anon)" => 1458856,
+  "KernelStack" => 17344, "DirectMap2M" => 7780352, "ShmemHugePages" => 0,
+  "Bounce" => 0, "Active(anon)" => 3331372, "SReclaimable" => 157716,
+  "CmaTotal" => 0, "VmallocChunk" => 0, "NFS_Unstable" => 0,
+  "MemAvailable" => 2481728, "PageTables" => 74504, "Cached" => 2242468,
+  "SwapTotal" => 8085500, "Committed_AS" => 13903064, "AnonPages" => 3972852,
+  "Inactive(file)" => 1236968, "SUnreclaim" => 125216, "MemFree" => 248788,
+  "HugePages_Free" => 0}
+```
 
 ### TODO
 
 * more tests
+
+* wrap memory in a struct
+
+* wrap CPU in a struct
 
 * add more system information
 

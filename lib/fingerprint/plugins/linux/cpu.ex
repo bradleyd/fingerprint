@@ -32,9 +32,4 @@ defmodule Fingerprint.Plugins.Linux.Cpu do
     end)
   end
 
-  defp string_to_int(str) do
-    String.to_integer(str)
-  end
-  
-
 end
