@@ -2,9 +2,9 @@
 
 Fingerprint provides operating system utilities for profiling your host.
 
-Fingerprint will do it's best to determine the os type and use the appropriate plugin to give you information
+Fingerprint will do it's best to determine the OS type (platform) and use the appropriate plugin to give you information.
 
-Currently information provieded consists of
+Currently, system information consists of:
 
 * release (platform info)
 
@@ -12,9 +12,14 @@ Currently information provieded consists of
 
 * block devices
 
-* CPU
+* CPU (Needs refactoring)
 
-* Memory (in progess)
+* memory (in progess)
+
+* filesystem (TODO)
+
+
+#### This library is early on and should be used at your own risk.  The structure can and will change.
 
 
 ### Release (Platform)
@@ -142,6 +147,10 @@ iex(2)> Fingerprint.Memory.all
 * add more system information
 
 * add more platforms other than linux
+
+## Contributors
+
+I need tons of help.  If this project interests you please submit a pull request.
 
 ## Installation
 
