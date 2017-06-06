@@ -3,14 +3,16 @@ defmodule Fingerprint.Mixfile do
 
   def project do
     [app: :fingerprint,
-     version: "0.1.0",
-     elixir: "~> 1.4",
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps(),
-     name: "fingerprint",
-     source_url: "https://github.com/bradleyd/fingerprint",
-     homepage_url: "http://github.com/bradleyd/fingerprint"]
+      version: "0.1.0",
+      elixir: "~> 1.4",
+      build_embedded: Mix.env == :prod,
+      start_permanent: Mix.env == :prod,
+      description: description(),
+      package: package(),
+      deps: deps(),
+      name: "fingerprint",
+      source_url: "https://github.com/bradleyd/fingerprint",
+      homepage_url: "http://github.com/bradleyd/fingerprint"]
   end
 
   # Configuration for the OTP application
@@ -32,5 +34,20 @@ defmodule Fingerprint.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:ex_doc, "~> 0.14", only: :dev, runtime: false}]
+  end
+
+  defp description do
+    """
+    Fingerprint provides system information like memory, CPU, os-release, block devices and network.
+    """
+  end
+  defp package do
+    [
+      name: :fingerprint,
+      files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+      maintainers: ["Bradley Smith"],
+      licenses: ["Apache 2.0"],
+      links: %{"GitHub" => "https://github.com/bradleyd/fingerprint"}
+    ]
   end
 end
