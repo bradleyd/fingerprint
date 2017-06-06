@@ -7,6 +7,8 @@ defmodule Fingerprint.Utils do
         {:unix, :linux} ->
           {mod,[]} = "Fingerprint.Plugins.Linux" <> ".#{base_module}" |> Code.eval_string
           mod
+        {:unix, :freebsd} -> raise ArgumentError, message: "Currently freebsd is not supported.  I need help adding this platform.  Please submit a pull request"
+        {:unix, :darwin} -> raise ArgumentError, message: "Currently osx is not supported.  I need help adding this platform.  Please submit a pull request"
       end
     end
   end
