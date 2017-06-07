@@ -1,7 +1,7 @@
 defmodule Fingerprint.Memory do
   import Fingerprint.Utils
 
-  @callback all() :: List.t
+  @callback all() :: Map.t
 
   @module use_module(__MODULE__)
 

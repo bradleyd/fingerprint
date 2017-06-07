@@ -3,9 +3,6 @@ defmodule Fingerprint.Plugins.Linux.Release do
   @moduledoc """
     Returns information from /etc/os-release file
   """
-  defmodule Attributes do
-    defstruct name: :nil, hostname: :nil, kernel_version: :nil, version: :nil, id: :nil, pretty_name: :nil, architecture: :nil
-  end
 
   @release_file Application.get_env(:fingerprint, :os_release)
 
@@ -15,14 +12,14 @@ defmodule Fingerprint.Plugins.Linux.Release do
   ## Examples
 
       iex> Fingerprint.OS.Release.release
-      %Fingerprint.Plugins.Linux.Release.Attributes{architecture: "x86_64",
-      hostname: "bradleyd-900X4C", id: "ubuntu", kernel_version: "4.10.0-20-generic",
+      %{architecture: "x86_64", hostname: "bradleyd-900X4C", id: "ubuntu", kernel_version: "4.10.0-20-generic",
       name: "Ubuntu", pretty_name: "Ubuntu 17.04", version: "17.04 (Zesty Zapus)"}
+
   """
   def release do
     stream = File.stream!(@release_file)
     data   = parse_release_file(stream)
-    build_release(data, %Attributes{architecture: architecture(), hostname: hostname(), kernel_version: kernel_version()})
+    build_release(data, %{architecture: architecture(), hostname: hostname(), kernel_version: kernel_version()})
   end
 
   # TODO to_atom may be rude
@@ -30,7 +27,7 @@ defmodule Fingerprint.Plugins.Linux.Release do
   defp build_release([h|t], acc) do
     key   = String.downcase(List.first(h)) |> String.to_atom
     value = List.last(h)
-    acc   = struct(acc, %{key => value})
+    acc   = Map.put(acc, key, value)
     build_release(t, acc)
   end
 
