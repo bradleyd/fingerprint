@@ -100,6 +100,11 @@ iex(1)> Fingerprint.BlockDevices.all()
 
 ### CPU
 
+```elixir
+iex> Fingerprint.Plugins.Linux.Cpu.info()
+%{"bogomips" => "3392.31", "cache_size" => "3072 KB", "count" => 4, "cpu_cores" => "2", "cpu_family" => "6", "cpu_mhz" => "799.987", "flags" => "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx rdtscp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx est tm2 ssse3 cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm epb tpr_shadow vnmi flexpriority ept vpid fsgsbase smep erms xsaveopt dtherm ida arat pln pts", "id" => "GenuineIntel", "model" => "58", "model_name" => "Intel(R) Core(TM) i5-3317U CPU @ 1.70GHz", "stepping" => "9"}
+```
+
 ### Memory
 
 ```elixir
